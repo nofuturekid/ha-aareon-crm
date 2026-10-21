@@ -12,7 +12,12 @@ from pytest_homeassistant_custom_component.components.diagnostics import (
     get_diagnostics_for_config_entry,
 )
 
-from custom_components.aareon_crm.const import CONF_CONTRACTS, DOMAIN
+from custom_components.aareon_crm.const import (
+    CONF_CONTRACTS,
+    CONF_NAMES,
+    CONF_PREFIX,
+    DOMAIN,
+)
 
 from .conftest import FLAT_REF, mock_portal
 
@@ -115,3 +120,36 @@ async def test_diagnostics_are_redacted(hass, hass_client, aioclient_mock, mock_
     for secret in ("user@example.com", "10001", "Example St", "pw'"):
         assert secret not in dumped
     assert diag["contracts"][0]["heating"]["first"] == "2022-02"
+
+
+async def test_diagnostics_hide_prefix_names_and_contract_numbers(
+    hass, hass_client, aioclient_mock, mock_entry
+):
+    """A shared diagnostics file must not reveal the landlord, contracts or login."""
+    mock_entry.add_to_hass(hass)
+    hass.config_entries.async_update_entry(
+        mock_entry,
+        options={
+            CONF_CONTRACTS: [FLAT_REF],
+            CONF_PREFIX: "Acmeprefix",
+            CONF_NAMES: {FLAT_REF: "Flatname", "10001": "Flatname"},
+        },
+    )
+    mock_portal(aioclient_mock)
+    with patch(STATS):
+        await hass.config_entries.async_setup(mock_entry.entry_id)
+        await hass.async_block_till_done()
+    diag = await get_diagnostics_for_config_entry(hass, hass_client, mock_entry)
+    assert diag["options"][CONF_PREFIX] == REDACTED
+    assert diag["options"][CONF_NAMES] == REDACTED
+    dumped = str(diag)
+    for secret in (
+        "Acmeprefix",
+        "Flatname",
+        "10001",
+        "1000001",
+        "portal.example.com",
+        "user@example.com",
+        "pw'",
+    ):
+        assert secret not in dumped

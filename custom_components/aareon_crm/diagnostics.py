@@ -8,10 +8,17 @@ from homeassistant.components.diagnostics import async_redact_data
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 from homeassistant.core import HomeAssistant
 
-from .const import CONF_CONTRACTS, CONF_PORTAL_URL
+from .const import CONF_CONTRACTS, CONF_NAMES, CONF_PORTAL_URL, CONF_PREFIX
 from .coordinator import AareonConfigEntry
 
-TO_REDACT = {CONF_PASSWORD, CONF_USERNAME, CONF_PORTAL_URL, CONF_CONTRACTS}
+TO_REDACT = {
+    CONF_PASSWORD,
+    CONF_USERNAME,
+    CONF_PORTAL_URL,
+    CONF_CONTRACTS,
+    CONF_PREFIX,
+    CONF_NAMES,
+}
 
 
 async def async_get_config_entry_diagnostics(
