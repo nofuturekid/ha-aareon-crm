@@ -1,0 +1,100 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Aareon tenant portal",
+        "description": "Log in with your tenant portal account.",
+        "data": {
+          "portal_url": "Portal URL",
+          "username": "Username",
+          "password": "Password"
+        }
+      },
+      "contracts": {
+        "title": "Contracts",
+        "description": "Select the contracts to import. The prefix is put in front of each device name.",
+        "data": {
+          "contracts": "Contracts",
+          "prefix": "Device name prefix"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Log in again",
+        "description": "The login for {username} failed. Enter the current password.",
+        "data": {
+          "password": "Password"
+        }
+      },
+      "name": {
+        "title": "Contract name",
+        "description": "Display name for {contract}. The device will be named \"prefix name\".",
+        "data": {
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "This is not a valid portal URL.",
+      "invalid_auth": "Login failed. Check username and password.",
+      "cannot_connect": "Could not reach the portal.",
+      "unknown": "Unexpected portal response.",
+      "no_contracts": "Select at least one contract."
+    },
+    "abort": {
+      "already_configured": "This account is already configured.",
+      "reauth_successful": "Re-authentication was successful."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Contracts",
+        "description": "Select the contracts to import. The prefix is put in front of each device name.",
+        "data": {
+          "contracts": "Contracts",
+          "prefix": "Device name prefix"
+        }
+      },
+      "name": {
+        "title": "Contract name",
+        "description": "Display name for {contract}. The device will be named \"prefix name\".",
+        "data": {
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "no_contracts": "Select at least one contract."
+    },
+    "abort": {
+      "invalid_auth": "Login failed. Use re-authentication to update the password.",
+      "cannot_connect": "Could not reach the portal.",
+      "unknown": "Unexpected portal response."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "heating": {
+        "name": "Heating"
+      },
+      "heating_standardized": {
+        "name": "Heating (standardized user)"
+      },
+      "hot_water": {
+        "name": "Hot water"
+      },
+      "hot_water_standardized": {
+        "name": "Hot water (standardized user)"
+      },
+      "last_update": {
+        "name": "Last successful update"
+      }
+    }
+  },
+  "issues": {
+    "contract_missing": {
+      "title": "Contract no longer listed in the portal",
+      "description": "The selected contract {reference} is not returned by the portal anymore. Remove it in the integration options."
+    }
+  }
+}

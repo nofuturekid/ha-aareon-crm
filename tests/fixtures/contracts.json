@@ -1,0 +1,36 @@
+[
+ {
+  "id": 1,
+  "reference": "1000001|1|-1",
+  "companyName": "EXAMPLE mbH Town",
+  "label": "Rental contract | 10001 | Example St. 1, 12345 Town - Flat",
+  "subLabel": "Example St. 1, 12345 Town - Flat",
+  "number": "10001",
+  "type": "L",
+  "contractType": "Mietvertrag",
+  "isOwner": true,
+  "flatCategory": {
+   "1000001|1|-1": {
+    "reference": "1000001|1|9",
+    "label": "Wohnraum"
+   }
+  }
+ },
+ {
+  "id": 2,
+  "reference": "1000001|1|-2",
+  "companyName": "EXAMPLE mbH Town",
+  "label": "Rental contract | 10002 | Example St. 2, 12345 Town - Workshop",
+  "subLabel": "Example St. 2, 12345 Town - Workshop",
+  "number": "10002",
+  "type": "L",
+  "contractType": "Mietvertrag",
+  "isOwner": true,
+  "flatCategory": {
+   "1000001|1|-2": {
+    "reference": "1000001|1|9",
+    "label": "gewerbliche Nutzung"
+   }
+  }
+ }
+]

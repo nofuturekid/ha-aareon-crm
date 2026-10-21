@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <!-- House with radiator and water drop. Neutral artwork, no third-party marks. -->
+  <rect x="4" y="4" width="248" height="248" rx="44" fill="#0f766e" stroke="#5eead4" stroke-width="8"/>
+  <path d="M40 124 128 48l88 76" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M60 112v100h136V112" fill="none" stroke="#ffffff" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- radiator -->
+  <g fill="#fbbf24">
+    <rect x="80" y="140" width="12" height="52" rx="6"/>
+    <rect x="100" y="140" width="12" height="52" rx="6"/>
+    <rect x="120" y="140" width="12" height="52" rx="6"/>
+    <rect x="76" y="132" width="60" height="8" rx="4"/>
+    <rect x="76" y="192" width="60" height="8" rx="4"/>
+  </g>
+  <!-- water drop -->
+  <path d="M168 138c-14 18-22 28-22 40a22 22 0 0 0 44 0c0-12-8-22-22-40z" fill="#7dd3fc"/>
+</svg>

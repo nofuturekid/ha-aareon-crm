@@ -1,0 +1,100 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Aareon Mieterportal",
+        "description": "Melde dich mit deinem Mieterportal-Konto an.",
+        "data": {
+          "portal_url": "Portal-URL",
+          "username": "Benutzername",
+          "password": "Passwort"
+        }
+      },
+      "contracts": {
+        "title": "Verträge",
+        "description": "Wähle die zu importierenden Verträge. Das Präfix wird jedem Gerätenamen vorangestellt.",
+        "data": {
+          "contracts": "Verträge",
+          "prefix": "Präfix für Gerätenamen"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Erneut anmelden",
+        "description": "Die Anmeldung für {username} ist fehlgeschlagen. Gib das aktuelle Passwort ein.",
+        "data": {
+          "password": "Passwort"
+        }
+      },
+      "name": {
+        "title": "Vertragsname",
+        "description": "Anzeigename für {contract}. Das Gerät heißt \"<Präfix> <Name>\".",
+        "data": {
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "invalid_url": "Das ist keine gültige Portal-URL.",
+      "invalid_auth": "Anmeldung fehlgeschlagen. Prüfe Benutzername und Passwort.",
+      "cannot_connect": "Das Portal ist nicht erreichbar.",
+      "unknown": "Unerwartete Antwort des Portals.",
+      "no_contracts": "Wähle mindestens einen Vertrag."
+    },
+    "abort": {
+      "already_configured": "Dieses Konto ist bereits eingerichtet.",
+      "reauth_successful": "Erneute Anmeldung erfolgreich."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Verträge",
+        "description": "Wähle die zu importierenden Verträge. Das Präfix wird jedem Gerätenamen vorangestellt.",
+        "data": {
+          "contracts": "Verträge",
+          "prefix": "Präfix für Gerätenamen"
+        }
+      },
+      "name": {
+        "title": "Vertragsname",
+        "description": "Anzeigename für {contract}. Das Gerät heißt \"<Präfix> <Name>\".",
+        "data": {
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "no_contracts": "Wähle mindestens einen Vertrag."
+    },
+    "abort": {
+      "invalid_auth": "Anmeldung fehlgeschlagen. Aktualisiere das Passwort über die erneute Anmeldung.",
+      "cannot_connect": "Das Portal ist nicht erreichbar.",
+      "unknown": "Unerwartete Antwort des Portals."
+    }
+  },
+  "entity": {
+    "sensor": {
+      "heating": {
+        "name": "Heizung"
+      },
+      "heating_standardized": {
+        "name": "Heizung (Standardnutzer)"
+      },
+      "hot_water": {
+        "name": "Warmwasser"
+      },
+      "hot_water_standardized": {
+        "name": "Warmwasser (Standardnutzer)"
+      },
+      "last_update": {
+        "name": "Letzte erfolgreiche Aktualisierung"
+      }
+    }
+  },
+  "issues": {
+    "contract_missing": {
+      "title": "Vertrag nicht mehr im Portal gelistet",
+      "description": "Der gewählte Vertrag {reference} wird vom Portal nicht mehr geliefert. Entferne ihn in den Optionen der Integration."
+    }
+  }
+}
