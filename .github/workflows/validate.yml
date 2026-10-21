@@ -13,16 +13,50 @@ permissions:
 jobs:
   hacs:
     name: HACS validation
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - uses: hacs/action@main
         with:
           category: integration
 
+  # 2026-10-21: the released hassfest image (Home Assistant 2026.10) does not
+  # know the manifest key "categories" yet (added to core dev on 2026-10-18,
+  # ships with 2026.11), while HACS validation already requires it. Run hassfest
+  # from Home Assistant core "dev" until then.
+  # TODO: switch back to home-assistant/actions/hassfest once the 2026.11 image is released.
   hassfest:
     name: hassfest
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-26.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: home-assistant/actions/hassfest@master
+      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7
+        with:
+          repository: home-assistant/core
+          ref: dev
+          path: core
+          sparse-checkout: |
+            homeassistant
+            script
+            requirements.txt
+            requirements_test.txt
+            requirements_test_pre_commit.txt
+            .python-version
+      - uses: actions/setup-python@v7
+        with:
+          python-version-file: core/.python-version
+          cache: pip
+          cache-dependency-path: core/requirements.txt
+      - name: Install hassfest dependencies
+        working-directory: core
+        run: |
+          python -m pip install --upgrade pip
+          pip install \
+            "pipdeptree==$(awk -F'==' '/^pipdeptree==/{print $2}' requirements_test.txt)" \
+            "tqdm==$(awk -F'==' '/^tqdm==/{print $2}' requirements_test.txt)" \
+            "ruff==$(awk -F'==' '/^ruff==/{print $2}' requirements_test_pre_commit.txt)" \
+            -c homeassistant/package_constraints.txt \
+            -r requirements.txt
+      - name: Run hassfest
+        working-directory: core
+        run: python -m script.hassfest --action validate --integration-path "$GITHUB_WORKSPACE/custom_components/aareon_crm"
